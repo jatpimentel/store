@@ -17,11 +17,11 @@ const ProductTable = () => {
             <Table.ColumnHeader colspan="2">Sporting Goods</Table.ColumnHeader>
           </Table.Row>
           <Table.Row>
-            <Table.Column>FootBall</Table.Column>
+            <Table.Column>Badminton</Table.Column>
             <Table.Column>$49.99</Table.Column>
           </Table.Row>
           <Table.Row>
-            <Table.Column>BaseBall</Table.Column>
+            <Table.Column>Billiard</Table.Column>
             <Table.Column>$49.99</Table.Column>
           </Table.Row>
           <Table.Row>
