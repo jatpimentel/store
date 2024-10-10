@@ -17,7 +17,7 @@ const TBody = ({ children }) => {
 };
 
 const Row = ({ children }) => {
-  return <tr>{children}</tr>;
+  return <tr className="text-red">{children}</tr>;
 };
 
 const Column = ({ children }) => {

@@ -5,29 +5,30 @@ import "./App.css";
 import FilterProductTable from "./components/FilterProductTable";
 import SearchBar from "./components/SearchBar";
 import ProductTable from "./components/ProductTable";
-
-const products = [
-  //Sporting goods
-  { id: 1, name: "Badminton", price: 49.9, type: 1, stock: 100 },
-  { id: 2, name: "Billiard", price: 99.9, type: 1, stock: 0 },
-  { id: 3, name: "Basketball", price: 99.9, type: 1, stock: 0 },
-
-  //Electronics
-  { id: 4, name: "Ipad Touch", price: 49.9, type: 2, stock: 50 },
-  { id: 5, name: "Iphone 5", price: 99.9, type: 2, stock: 0 },
-  { id: 6, name: "Nexus 7", price: 99.9, type: 2, stock: 72 },
-];
-
-const headers = ["Sporting goods", "Electronics"];
+import { useEffect } from "react";
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [query, setQuery] = useState("");
   const [stockChecked, setStockChecked] = useState(false);
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(query.toLowerCase()) &&
-      (!stockChecked || product.stock > 0)
-  );
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https:fakestoreapi.com/products");
+        const data = await response.json();
+
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  }, []);
 
   return (
     <FilterProductTable>
@@ -37,8 +38,15 @@ function App() {
         stockChecked={stockChecked}
         setStockChecked={setStockChecked}
       />
-
-      <ProductTable headers={headers} products={filteredProducts} />
+      {!loading ? (
+        <div className="flex flex-col gap-4">
+          {products.map((product) => (
+            <span key={product.id}>{product.title}</span>
+          ))}
+        </div>
+      ) : (
+        <span>Loading pa hulat...</span>
+      )}
     </FilterProductTable>
   );
 }
