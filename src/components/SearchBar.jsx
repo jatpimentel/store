@@ -1,6 +1,13 @@
 import React from "react";
 
-const SearchBar = ({ query, setQuery, StockChecked, setStockChecked }) => {
+const SearchBar = ({
+  query,
+  setQuery,
+  StockChecked,
+  setStockChecked,
+  sort,
+  setSort,
+}) => {
   return (
     <div>
       <input
@@ -18,6 +25,10 @@ const SearchBar = ({ query, setQuery, StockChecked, setStockChecked }) => {
         />
         Only show products in stockS
       </div>
+      <select onChange={(e) => setSort(e.target.value)} value={sort}>
+        <option vales="asc">asc</option>
+        <option value="desc">desc</option>
+      </select>
     </div>
   );
 };
