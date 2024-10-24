@@ -8,7 +8,7 @@ const ProductCard = ({ imageSrc, name, id }) => {
       <span className="font-bold text-sm">{name}</span>
       <div>
         <Link
-          to={`/${id}`}
+          to={`/products/${id}`}
           className="bg-green-500 hover:bg500/70 px-4 py-2 rounded-lg"
         >
           View
